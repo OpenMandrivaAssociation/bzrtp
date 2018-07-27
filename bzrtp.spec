@@ -19,6 +19,7 @@ BuildRequires:	cmake
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(sqlite3)
+BuildRequires:	bctoolbox-static-devel
 
 %description
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
