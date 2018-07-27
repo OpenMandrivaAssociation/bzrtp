@@ -1,0 +1,13 @@
+diff -up ./CMakeLists.txt.orig ./CMakeLists.txt
+--- ./CMakeLists.txt.orig	2017-12-31 15:15:57.744279129 +0200
++++ ./CMakeLists.txt	2017-12-31 15:16:38.876729431 +0200
+@@ -146,7 +146,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DI
+ 	@ONLY
+ )
+ 
+-set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
++set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake" CACHE PATH "CMake config file location")
+ install(EXPORT ${EXPORT_TARGETS_NAME}Targets
+ 	FILE BZRTPTargets.cmake
+ 	DESTINATION ${CONFIG_PACKAGE_LOCATION}
+

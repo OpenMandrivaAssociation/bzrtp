@@ -1,0 +1,33 @@
+diff -up ./CMakeLists.txt.orig ./CMakeLists.txt
+--- ./CMakeLists.txt.orig	2017-12-31 15:04:34.859014727 +0200
++++ ./CMakeLists.txt	2017-12-31 15:08:47.082507616 +0200
+@@ -135,6 +135,17 @@ configure_file(cmake/BZRTPConfig.cmake.i
+ 	@ONLY
+ )
+ 
++set(prefix ${CMAKE_INSTALL_PREFIX})
++set(exec_prefix ${prefix}/libexec)
++set(libdir ${prefix}/lib${LIB_SUFFIX})
++set(includedir ${prefix}/include)
++set(PACKAGE_VERSION ${PROJECT_VERSION})
++
++configure_file(${CMAKE_CURRENT_SOURCE_DIR}/libbzrtp.pc.in
++	"${CMAKE_CURRENT_BINARY_DIR}/libbzrtp.pc"
++	@ONLY
++)
++
+ set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
+ install(EXPORT ${EXPORT_TARGETS_NAME}Targets
+ 	FILE BZRTPTargets.cmake
+@@ -145,7 +155,10 @@ install(FILES
+ 	"${CMAKE_CURRENT_BINARY_DIR}/BZRTPConfigVersion.cmake"
+ 	DESTINATION ${CONFIG_PACKAGE_LOCATION}
+ )
+-
++install(FILES
++	"${CMAKE_CURRENT_BINARY_DIR}/libbzrtp.pc"
++	DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
++)
+ 
+ # CPack settings
+ set(CPACK_PACKAGE_NAME "bzrtp")
