@@ -5,7 +5,7 @@
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
 Version:	1.0.6
-Release:	2
+Release:	3
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
@@ -40,6 +40,7 @@ Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	bzrtp-devel = %{version}-%{release}
+Requires:	pkgconfig(libxml-2.0)
 
 %description -n	%{develname}
 This package contains development files for %{name}
