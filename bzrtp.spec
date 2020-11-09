@@ -4,13 +4,13 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	1.0.6
-Release:	3
+Version:	4.4.6
+Release:	1
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
-Source0:	https://linphone.org/releases/sources/bzrtp/bzrtp-%{version}.tar.gz
-Source1:	https://linphone.org/releases/sources/bzrtp/bzrtp-%{version}.tar.gz.md5
+# https://gitlab.linphone.org/BC/public/bzrtp
+Source0:	https://gitlab.linphone.org/BC/public/bzrtp/-/archive/%{version}/bzrtp-%{version}.tar.bz2
 # (wally) install .pc file with cmake
 Patch0:		bzrtp-1.0.6-cmake-install-pkgconfig-pc-file.patch
 # (wally) alow overriding cmake config file location from cmd line
@@ -62,12 +62,10 @@ This package contains development files for %{name}
 find %{buildroot} -name "*.la" -delete
 
 %files -n %{libname}
-%doc COPYING AUTHORS NEWS README.md
 %{_libdir}/lib%{name}.so.*
 
 %files -n %{develname}
 %{_includedir}/%{name}/
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/lib%{name}.pc
-%{_libdir}/cmake/%{name}/
-
+%{_datadir}/cmake/%{name}

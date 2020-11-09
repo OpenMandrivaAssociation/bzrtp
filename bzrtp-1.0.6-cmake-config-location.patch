@@ -1,13 +1,12 @@
-diff -up ./CMakeLists.txt.orig ./CMakeLists.txt
---- ./CMakeLists.txt.orig	2017-12-31 15:15:57.744279129 +0200
-+++ ./CMakeLists.txt	2017-12-31 15:16:38.876729431 +0200
-@@ -146,7 +146,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DI
- 	@ONLY
+diff -up bzrtp-4.4.6/CMakeLists.txt.2~ bzrtp-4.4.6/CMakeLists.txt
+--- bzrtp-4.4.6/CMakeLists.txt.2~	2020-11-09 21:28:17.553578431 +0100
++++ bzrtp-4.4.6/CMakeLists.txt	2020-11-09 21:28:46.788171390 +0100
+@@ -126,7 +126,7 @@ configure_file(${CMAKE_CURRENT_SOURCE_DI
  )
  
+ include(CMakePackageConfigHelpers)
 -set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
-+set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake" CACHE PATH "CMake config file location")
- install(EXPORT ${EXPORT_TARGETS_NAME}Targets
- 	FILE BZRTPTargets.cmake
- 	DESTINATION ${CONFIG_PACKAGE_LOCATION}
-
++set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/cmake/${PROJECT_NAME}")
+ 
+ write_basic_package_version_file(
+ 	"${CMAKE_CURRENT_BINARY_DIR}/${EXPORT_TARGETS_NAME}ConfigVersion.cmake"

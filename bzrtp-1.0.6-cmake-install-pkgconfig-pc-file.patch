@@ -1,9 +1,9 @@
-diff -up ./CMakeLists.txt.orig ./CMakeLists.txt
---- ./CMakeLists.txt.orig	2017-12-31 15:04:34.859014727 +0200
-+++ ./CMakeLists.txt	2017-12-31 15:08:47.082507616 +0200
-@@ -135,6 +135,17 @@ configure_file(cmake/BZRTPConfig.cmake.i
- 	@ONLY
- )
+diff -up bzrtp-4.4.6/CMakeLists.txt.1~ bzrtp-4.4.6/CMakeLists.txt
+--- bzrtp-4.4.6/CMakeLists.txt.1~	2020-11-09 21:26:24.107959114 +0100
++++ bzrtp-4.4.6/CMakeLists.txt	2020-11-09 21:27:32.208110792 +0100
+@@ -114,6 +114,16 @@ if(ENABLE_TESTS)
+ 	add_subdirectory(test)
+ endif()
  
 +set(prefix ${CMAKE_INSTALL_PREFIX})
 +set(exec_prefix ${prefix}/libexec)
@@ -15,19 +15,18 @@ diff -up ./CMakeLists.txt.orig ./CMakeLists.txt
 +	"${CMAKE_CURRENT_BINARY_DIR}/libbzrtp.pc"
 +	@ONLY
 +)
-+
+ 
+ include(CMakePackageConfigHelpers)
  set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
- install(EXPORT ${EXPORT_TARGETS_NAME}Targets
- 	FILE BZRTPTargets.cmake
-@@ -145,7 +155,10 @@ install(FILES
- 	"${CMAKE_CURRENT_BINARY_DIR}/BZRTPConfigVersion.cmake"
+@@ -143,6 +153,11 @@ install(FILES
  	DESTINATION ${CONFIG_PACKAGE_LOCATION}
  )
--
+ 
 +install(FILES
 +	"${CMAKE_CURRENT_BINARY_DIR}/libbzrtp.pc"
 +	DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
 +)
- 
- # CPack settings
- set(CPACK_PACKAGE_NAME "bzrtp")
++
+ if (ENABLE_PACKAGE_SOURCE)
+ 	add_subdirectory(build)
+ endif()
