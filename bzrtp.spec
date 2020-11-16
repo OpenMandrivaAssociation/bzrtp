@@ -4,7 +4,7 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	4.4.6
+Version:	4.4.8
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
@@ -46,8 +46,7 @@ Requires:	pkgconfig(libxml-2.0)
 This package contains development files for %{name}
 
 %prep
-%setup -q
-%autopatch -p1
+%autosetup -p1
 
 %build
 %cmake \
