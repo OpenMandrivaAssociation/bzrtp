@@ -4,7 +4,7 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	4.4.8
+Version:	4.4.21
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
