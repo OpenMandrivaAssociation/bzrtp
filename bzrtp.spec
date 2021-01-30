@@ -4,7 +4,7 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	4.4.21
+Version:	4.4.24
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
@@ -26,6 +26,8 @@ bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
 The library written in C 89, is fully portable, and can be executed
 on many platforms including x86 and ARM processors.
 
+#---------------------------------------------------------------------------
+
 %package -n	%{libname}
 Summary:	ZRTP keys exchange protocol implementation
 Group:		System/Libraries
@@ -34,6 +36,11 @@ Group:		System/Libraries
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
 The library written in C 89, is fully portable, and can be executed
 on many platforms including x86 and ARM processors.
+
+%files -n %{libname}
+%{_libdir}/lib%{name}.so.*
+
+#---------------------------------------------------------------------------
 
 %package -n	%{develname}
 Summary:	Development files for %{name}
@@ -45,26 +52,25 @@ Requires:	pkgconfig(libxml-2.0)
 %description -n	%{develname}
 This package contains development files for %{name}
 
+%files -n %{develname}
+%{_includedir}/%{name}/
+%{_libdir}/lib%{name}.so
+%{_libdir}/pkgconfig/lib%{name}.pc
+%{_datadir}/cmake/%{name}
+
+#---------------------------------------------------------------------------
+
 %prep
 %autosetup -p1
 
 %build
 %cmake \
   -DENABLE_STATIC:BOOL=NO \
-  -DENABLE_STRICT:BOOL=NO \
+  -DENABLE_STRICT:BOOL=ON \
   -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name}
-%make
+%make_build
 
 %install
 %make_install -C build
 
 find %{buildroot} -name "*.la" -delete
-
-%files -n %{libname}
-%{_libdir}/lib%{name}.so.*
-
-%files -n %{develname}
-%{_includedir}/%{name}/
-%{_libdir}/lib%{name}.so
-%{_libdir}/pkgconfig/lib%{name}.pc
-%{_datadir}/cmake/%{name}
