@@ -9,7 +9,6 @@ Release:	1
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
-# https://gitlab.linphone.org/BC/public/bzrtp
 Source0:	https://gitlab.linphone.org/BC/public/bzrtp/-/archive/%{version}/bzrtp-%{version}.tar.bz2
 # (wally) install .pc file with cmake
 Patch0:		bzrtp-1.0.6-cmake-install-pkgconfig-pc-file.patch
