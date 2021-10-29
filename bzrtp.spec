@@ -4,16 +4,16 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	4.4.34
+Version:	5.0.44
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
 Source0:	https://gitlab.linphone.org/BC/public/bzrtp/-/archive/%{version}/bzrtp-%{version}.tar.bz2
 # (wally) install .pc file with cmake
-Patch0:		bzrtp-1.0.6-cmake-install-pkgconfig-pc-file.patch
+Patch0:		bzrtp-5.0.18-cmake-install-pkgconfig-pc-file.patch
 # (wally) alow overriding cmake config file location from cmd line
-Patch1:         bzrtp-1.0.6-cmake-config-location.patch
+Patch1:		bzrtp-5.0.18-cmake-config-location.patch
 BuildRequires:	cmake
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(libxml-2.0)
@@ -64,12 +64,15 @@ This package contains development files for %{name}
 
 %build
 %cmake \
-  -DENABLE_STATIC:BOOL=NO \
-  -DENABLE_STRICT:BOOL=ON \
-  -DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name}
-%make_build
+	-DENABLE_STATIC:BOOL=NO \
+	-DENABLE_STRICT:BOOL=ON \
+	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name} \
+	-G Ninja
+
+%ninja_build
 
 %install
-%make_install -C build
+%ninja_install -C build
 
 find %{buildroot} -name "*.la" -delete
+
