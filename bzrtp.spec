@@ -15,6 +15,7 @@ Patch0:		bzrtp-5.0.18-cmake-install-pkgconfig-pc-file.patch
 # (wally) alow overriding cmake config file location from cmd line
 Patch1:		bzrtp-5.0.18-cmake-config-location.patch
 BuildRequires:	cmake
+BuildRequires:	ninja
 BuildRequires:	pkgconfig(bctoolbox)
 BuildRequires:	pkgconfig(libxml-2.0)
 BuildRequires:	pkgconfig(sqlite3)
