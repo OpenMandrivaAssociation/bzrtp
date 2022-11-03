@@ -1,10 +1,10 @@
 %define major 0
-%define libname %mklibname %{name} %{major}
-%define develname %mklibname %{name} -d
+%define libname %mklibname %{name}
+%define devname %mklibname %{name} -d
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	5.1.61
+Version:	5.1.67
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
@@ -42,17 +42,17 @@ on many platforms including x86 and ARM processors.
 
 #---------------------------------------------------------------------------
 
-%package -n	%{develname}
+%package -n	%{devname}
 Summary:	Development files for %{name}
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	bzrtp-devel = %{version}-%{release}
 Requires:	pkgconfig(libxml-2.0)
 
-%description -n	%{develname}
+%description -n	%{devname}
 This package contains development files for %{name}
 
-%files -n %{develname}
+%files -n %{devname}
 %{_includedir}/%{name}/
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/lib%{name}.pc
