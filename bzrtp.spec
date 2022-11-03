@@ -2,6 +2,9 @@
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
+%bcond_with	static
+%bcond_without	strict
+
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
 Version:	5.1.67
@@ -65,8 +68,8 @@ This package contains development files for %{name}
 
 %build
 %cmake \
-	-DENABLE_STATIC:BOOL=NO \
-	-DENABLE_STRICT:BOOL=ON \
+	-DENABLE_STRICT:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
+	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name} \
 	-G Ninja
 
