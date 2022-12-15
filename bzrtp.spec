@@ -19,10 +19,11 @@ Patch0:		bzrtp-5.0.18-cmake-install-pkgconfig-pc-file.patch
 Patch1:		bzrtp-5.0.18-cmake-config-location.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
-BuildRequires:	pkgconfig(bctoolbox)
-BuildRequires:	pkgconfig(libxml-2.0)
-BuildRequires:	pkgconfig(sqlite3)
 BuildRequires:	bctoolbox-static-devel
+BuildRequires:	cmake(bctoolbox)
+BuildRequires:	cmake(libxml2)
+BuildRequires:	cmake(postquantumcryptoengine)
+BuildRequires:	pkgconfig(sqlite3)
 
 %description
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
