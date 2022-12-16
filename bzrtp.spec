@@ -2,7 +2,7 @@
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
-%bcond_with	static
+%bcond_with		static
 %bcond_without	strict
 
 Summary:	ZRTP keys exchange protocol implementation
@@ -69,8 +69,8 @@ This package contains development files for %{name}
 
 %build
 %cmake \
-	-DENABLE_STRICT:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
 	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
+	-DENABLE_STRICT:BOOL=%{?with_strict:ON}%{?!with_strict:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name} \
 	-G Ninja
 
