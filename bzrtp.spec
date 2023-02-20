@@ -2,8 +2,8 @@
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
-%bcond_with		static
-%bcond_without	strict
+%bcond_with	static
+%bcond_with	strict
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
