@@ -8,7 +8,7 @@
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
 Version:	5.2.37
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
