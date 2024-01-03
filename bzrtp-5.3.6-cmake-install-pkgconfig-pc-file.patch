@@ -1,6 +1,6 @@
 --- a/CMakeLists.txt
 +++ b/CMakeLists.txt
-@@ -114,6 +114,16 @@ if(ENABLE_TESTS)
+@@ -114,6 +114,17 @@ if(ENABLE_TESTS)
  	add_subdirectory(test)
  endif()
  
@@ -14,9 +14,10 @@
 +	"${CMAKE_CURRENT_BINARY_DIR}/libbzrtp.pc"
 +	@ONLY
 +)
- 
- include(CMakePackageConfigHelpers)
- set(CONFIG_PACKAGE_LOCATION "${CMAKE_INSTALL_DATADIR}/${PROJECT_NAME}/cmake")
++
+ if(ENABLE_DOC)
+ 	# Doxygen
+ 	find_package(Doxygen)
 @@ -143,6 +153,11 @@ install(FILES
  	endif()
  endif()
@@ -26,6 +27,6 @@
 +	DESTINATION "${CMAKE_INSTALL_LIBDIR}/pkgconfig"
 +)
 +
- if (ENABLE_PACKAGE_SOURCE)
+ if(ENABLE_PACKAGE_SOURCE)
  	add_subdirectory(build)
  endif()

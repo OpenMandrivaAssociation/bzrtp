@@ -13,13 +13,10 @@ License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
 Source0:	https://gitlab.linphone.org/BC/public/bzrtp/-/archive/%{version}/bzrtp-%{version}.tar.bz2
-# (wally) install .pc file with cmake
-Patch0:		bzrtp-5.0.18-cmake-install-pkgconfig-pc-file.patch
-# (wally) alow overriding cmake config file location from cmd line
-Patch1:		bzrtp-5.0.18-cmake-config-location.patch
+Patch0:		bzrtp-5.3.6-cmake-install-pkgconfig-pc-file.patch
+Patch1:		bzrtp-5.3.6-cmake-config-location.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
-BuildRequires:	bctoolbox-static-devel
 BuildRequires:	cmake(bctoolbox)
 BuildRequires:	cmake(libxml2)
 BuildRequires:	cmake(postquantumcryptoengine)
@@ -60,7 +57,7 @@ This package contains development files for %{name}
 %{_includedir}/%{name}/
 %{_libdir}/lib%{name}.so
 %{_libdir}/pkgconfig/lib%{name}.pc
-%{_datadir}/cmake/%{name}
+%{_datadir}/cmake/BZRTP
 
 #---------------------------------------------------------------------------
 
