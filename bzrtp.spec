@@ -7,7 +7,7 @@
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	5.3.6
+Version:	5.3.15
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
@@ -17,9 +17,9 @@ Patch0:		bzrtp-5.3.6-cmake-install-pkgconfig-pc-file.patch
 Patch1:		bzrtp-5.3.6-cmake-config-location.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
-BuildRequires:	cmake(bctoolbox)
+BuildRequires:	cmake(BCToolbox)
 BuildRequires:	cmake(libxml2)
-BuildRequires:	cmake(postquantumcryptoengine)
+BuildRequires:	cmake(PostQuantumCryptoEngine)
 BuildRequires:	pkgconfig(sqlite3)
 
 %description
