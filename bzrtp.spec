@@ -79,6 +79,3 @@ This package contains development files for %{name}
 %install
 %ninja_install -C build
 
-# 
-#find %{buildroot} -name "*.la" -delete
-
