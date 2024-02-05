@@ -2,13 +2,16 @@
 %define libname %mklibname %{name}
 %define devname %mklibname %{name} -d
 
+# exclude unwanted cmake requires
+%global __provides_exclude_from ^%{_datadir}/cmake/*/Find.*cmake$
+
 %bcond_with	static
 %bcond_with	strict
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
 Version:	5.3.15
-Release:	1
+Release:	2
 License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
@@ -44,7 +47,7 @@ on many platforms including x86 and ARM processors.
 #---------------------------------------------------------------------------
 
 %package -n	%{devname}
-Summary:	Development files for %{name}
+Summary:	Development files for %{name}rem
 Group:		Development/C
 Requires:	%{libname} = %{version}-%{release}
 Provides:	bzrtp-devel = %{version}-%{release}
@@ -76,5 +79,6 @@ This package contains development files for %{name}
 %install
 %ninja_install -C build
 
-find %{buildroot} -name "*.la" -delete
+# 
+#find %{buildroot} -name "*.la" -delete
 
