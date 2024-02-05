@@ -3,7 +3,7 @@
 %define devname %mklibname %{name} -d
 
 # exclude unwanted cmake requires
-%global __provides_exclude_from ^%{_datadir}/cmake/*/Find.*cmake$
+%global __provides_exclude_from ^%{_datadir}/cmake/.*/Find.*cmake$
 
 %bcond_with	static
 %bcond_with	strict
