@@ -5,12 +5,14 @@
 # exclude unwanted cmake requires
 %global __provides_exclude_from ^%{_datadir}/cmake/.*/Find.*cmake$
 
-%bcond_with	static
-%bcond_with	strict
+%bcond pqcrypto			1
+%bcond strict			1
+%bcond unit_tests		1
+%bcond unit_tests_install	0
 
 Summary:	ZRTP keys exchange protocol implementation
 Name:		bzrtp
-Version:	5.3.93
+Version:	5.3.94
 Release:	1
 License:	GPLv2
 Group:		System/Libraries
@@ -29,6 +31,12 @@ BuildRequires:	pkgconfig(sqlite3)
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
 The library written in C 89, is fully portable, and can be executed
 on many platforms including x86 and ARM processors.
+
+%if %{with unit_tests} && %{with unit_tests_install}
+%files
+%{_bindir}/%{name}-tester
+%{_datadir}/%{name}-tester/
+%endif
 
 #---------------------------------------------------------------------------
 
@@ -70,12 +78,26 @@ This package contains development files for %{name}
 %build
 %cmake \
 	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
-	-DENABLE_STRICT:BOOL=%{?with_strict:ON}%{?!with_strict:OFF} \
 	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name} \
+	-DENABLE_PQCRYPTO:BOOL==%{?with_pqcrypto:ON}%{?!with_pqcrypto:OFF} \
+	-DENABLE_UNIT_TESTS:BOOL=%{?with_unit_tests:ON}%{?!with_unit_tests:OFF} \
 	-G Ninja
 
 %ninja_build
 
 %install
 %ninja_install -C build
+
+# don't install unit tester
+%if %{with unit_tests} && ! %{with unit_tests_install}
+rm -f  %{buildroot}%{_bindir}/%{name}-tester
+rm -fr %{buildroot}%{_datadir}/%{name}-tester/
+%endif
+
+%check
+%if %{with unit_tests}
+pushd build
+ctest
+popd
+%endif
 
