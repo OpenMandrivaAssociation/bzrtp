@@ -18,14 +18,25 @@ License:	GPLv2
 Group:		System/Libraries
 URL:		https://linphone.org/
 Source0:	https://gitlab.linphone.org/BC/public/bzrtp/-/archive/%{version}/bzrtp-%{version}.tar.bz2
-Patch0:		bzrtp-5.3.6-cmake-install-pkgconfig-pc-file.patch
-Patch1:		bzrtp-5.3.6-cmake-config-location.patch
 BuildRequires:	cmake
 BuildRequires:	ninja
 BuildRequires:	cmake(BCToolbox)
 BuildRequires:	cmake(libxml2)
 BuildRequires:	cmake(PostQuantumCryptoEngine)
 BuildRequires:	pkgconfig(sqlite3)
+
+BuildSystem:	cmake
+BuildOption:	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF}
+BuildOption:	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name}
+BuildOption:	-DENABLE_PQCRYPTO:BOOL==%{?with_pqcrypto:ON}%{?!with_pqcrypto:OFF}
+BuildOption:	-DENABLE_UNIT_TESTS:BOOL=%{?with_unit_tests:ON}%{?!with_unit_tests:OFF}
+
+%patchlist
+bzrtp-5.3.6-cmake-install-pkgconfig-pc-file.patch
+bzrtp-5.3.6-cmake-config-location.patch
+%if ! %{with unit_tests_install}
+bzrtp-5.4.50-dont-install-tester.patch
+%endif
 
 %description
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
@@ -71,33 +82,4 @@ This package contains development files for %{name}
 %{_datadir}/cmake/BZRTP
 
 #---------------------------------------------------------------------------
-
-%prep
-%autosetup -p1
-
-%build
-%cmake \
-	-DENABLE_STATIC:BOOL=%{?with_static:ON}%{?!with_static:OFF} \
-	-DCONFIG_PACKAGE_LOCATION:PATH=%{_libdir}/cmake/%{name} \
-	-DENABLE_PQCRYPTO:BOOL==%{?with_pqcrypto:ON}%{?!with_pqcrypto:OFF} \
-	-DENABLE_UNIT_TESTS:BOOL=%{?with_unit_tests:ON}%{?!with_unit_tests:OFF} \
-	-G Ninja
-
-%ninja_build
-
-%install
-%ninja_install -C build
-
-# don't install unit tester
-%if %{with unit_tests} && ! %{with unit_tests_install}
-rm -f  %{buildroot}%{_bindir}/%{name}-tester
-rm -fr %{buildroot}%{_datadir}/%{name}-tester/
-%endif
-
-%check
-%if %{with unit_tests}
-pushd build
-ctest
-popd
-%endif
 
