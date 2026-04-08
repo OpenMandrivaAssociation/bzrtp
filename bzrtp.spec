@@ -38,6 +38,8 @@ bzrtp-5.3.6-cmake-config-location.patch
 %if ! %{with unit_tests_install}
 bzrtp-5.4.50-dont-install-tester.patch
 %endif
+# See similar patch in postquantumcryptoengine
+bzrtp-no-hqc.patch
 
 %description
 bzrtp is a FOSS implementation of ZRTP keys exchange protocol.
